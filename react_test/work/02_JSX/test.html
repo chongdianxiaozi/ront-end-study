@@ -42,6 +42,20 @@
 -->
 <div id="example1"></div>
 <div id="example2"></div>
+<script type="text/javascript" src="../js/react.js"></script>
+<script type="text/javascript" src="../js/react-dom.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
 
+    //纯js
+    //var dom1 = React.createElement('h2', {id:'demo', name:'zhu'}, 'Hello React');
+    let dom1 = React.createElement('h2', {id:'demo', name:'zhu'}, 'Hello React');
+    ReactDOM.render(dom1, document.getElementById('example1'));
+
+    //JSX
+    //var dom2 = <h1 id="demo2" name="zhu2">Hello React</h1>;
+    let dom2 = <h1 id="demo2" name="zhu2">Hello React</h1>;
+    ReactDOM.render(dom2, document.getElementById('example2'));
+</script>
 </body>
 </html>
