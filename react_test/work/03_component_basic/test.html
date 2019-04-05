@@ -45,6 +45,27 @@
   2). 得到包含的虚拟DOM并解析为真实DOM
   3). 插入到指定的页面元素内部
 */
+  // 工厂(无状态)函数
+  function MyComponent() {
+      return <h1>工厂(无状态)函数</h1>
+  }
+
+  // ES6类
+  class MyComponent2 extends React.Component {
+      render() {
+          return <h1>ES6类</h1>
+      }
+  }
+
+  // ES5
+  var MyComponent3 = React.createClass({
+      render() {
+          return <h1>ES5</h1>
+      }
+  })
+  ReactDOM.render(<MyComponent/>, document.getElementById('example1'))
+  ReactDOM.render(<MyComponent2/>, document.getElementById('example2'))
+  ReactDOM.render(<MyComponent3/>, document.getElementById('example3'))
 </script>
 </body>
 </html>
