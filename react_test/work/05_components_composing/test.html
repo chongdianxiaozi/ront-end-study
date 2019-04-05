@@ -27,7 +27,35 @@
      * Welcome: props.name  string
      * App: props.names    array
    */
+  //定义组件
+  class Welcome extends React.Component{
+      render() {
+          return (
+            <h1>welcome {this.props.name}</h1>
+          );
+      }
+  }
+  //定义组件
+  class App extends React.Component{
+      render() {
+          return(
+            <div>
+                {
+                    this.props.names.map(
+                        (name, index) => <Welcome name={name} key={index}/>
+                    )
+                }
+            </div>
+          );
+      }
+  }
 
+  App.propTypes = {
+      names: React.PropTypes.array.isRequired
+  }
+
+  let names = ['kobe', 'wade', 'james'];
+  ReactDOM.render(<App names = {names}/>, document.getElementById('example'))
 </script>
 </body>
 </html>
