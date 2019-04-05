@@ -15,6 +15,7 @@
 
 <div id="example"></div>
 <div id="example2"></div>
+<div id="example3"></div>
 
 <script src="../js/react.js"></script>
 <script src="../js/react-dom.js"></script>
@@ -52,7 +53,43 @@
     1). 如果性别没有指定, 默认为男
     2). 如果年龄没有指定, 默认为18
   */
+  class Person extends React.Component{
+      constructor(props) {
+          super(props);
+          console.log(props);
+      }
+      render() {
+          return(
+            <ul>
+              <li>姓名: {this.props.name}</li>
+              <li>性别: {this.props.sex}</li>
+              <li>年龄: {this.props.age}</li>
+            </ul>
+          );
+      }
+  }
 
+  // 默认值
+  Person.defaultProps = {
+      //sex:'女',
+      //age:30
+      age:'30'
+  }
+  // 数据检验
+  Person.propTypes = {
+      name: React.PropTypes.string.isRequired,//字符串,必填
+      sex: React.PropTypes.string.isRequired,
+      age: React.PropTypes.number.isRequired//数值,必填
+  }
+
+  //初始化数据
+  let person = {name:'kobe', sex:'男', age:36};
+  let person2 = {name:'liuyifei'};
+  let person3 = {name:'huge'};
+  //ReactDOM.render(<Person name={person.name} sex={person.sex} age={person.age}/>, document.getElementById('example'))
+  //ReactDOM.render(<Person {...person}/>, document.getElementById('example'))
+  //ReactDOM.render(<Person {...person2} />, document.getElementById('example2'))
+  ReactDOM.render(<Person {...person3}/>, document.getElementById('example3'))
 </script>
 </body>
 </html>
