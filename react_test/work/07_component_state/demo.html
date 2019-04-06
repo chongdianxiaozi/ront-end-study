@@ -41,6 +41,78 @@
       2). 如果输入的文本两边有空格, 去掉空格后添加
     */
 
+  class AddTodo extends React.Component{
+
+      constructor(props) {
+          super(props);
+          this.add = this.add.bind(this);
+      }
+
+      add() {
+          let value = this.refs.newTodo.value;
+          if(!value.trim()) {
+              return;
+          }
+
+          this.props.add(value);
+          this.refs.newTodo.value = '';
+      }
+
+      render() {
+          return(
+              <div>
+                <input ref='newTodo' type="text" />
+                <button onClick={this.add}>Add #4</button>
+              </div>
+          );
+      }
+  }
+
+  class TodoList extends React.Component{
+      render(){
+          let {todoList} = this.props;
+          console.log(todoList);
+          return(
+              <ul>
+                  {
+                      todoList.map((item, index) => <li key={index}>{item}</li>)
+                  }
+              </ul>
+          );
+      }
+  }
+
+  class App extends React.Component{
+      constructor(props){
+          super(props);
+          this.state = {
+              todos:['吃饭','睡觉','工作']
+          }
+          this.add = this.add.bind(this);
+      }
+
+      add(newTodo) {
+          let todoList = this.state.todos;
+          todoList.unshift(newTodo);
+          this.setState({todoList});
+      }
+
+      render() {
+          let {todos} = this.state;
+          return(
+              <div>
+                <h1>Simple TODO List</h1>
+                <AddTodo add={this.add}/>
+                <TodoList todoList={todos}/>
+              </div>
+
+
+          );
+      }
+
+  }
+
+  ReactDOM.render(<App/>, document.getElementById('example'))
   </script>
 </body>
 </html>

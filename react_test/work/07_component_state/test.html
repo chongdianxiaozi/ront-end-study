@@ -38,6 +38,29 @@
     1. 显示h2标题, 初始文本为: 你喜欢我
     2. 点击标题更新为: 我喜欢你
   */
+
+  class  Like extends React.Component{
+      constructor(props){
+          super(props);
+          this.state = {
+              isLikeMe : true
+          }
+          this.changLike = this.changLike.bind(this);
+      }
+
+      changLike() {
+          let isLikeMe = !this.state.isLikeMe;
+          this.setState({isLikeMe})
+      }
+      render() {
+          let text = this.state.isLikeMe ? 'You like me' : 'I like you';
+          return(
+              <button onClick={this.changLike}>{text}</button>
+          );
+      }
+  }
+
+  ReactDOM.render(<Like/>, document.getElementById('example'))
 </script>
 </body>
 </html>
