@@ -41,6 +41,78 @@
     * 可以在componentWillUnmount()做一些收尾工作: 停止监听
     * 生命周期还有一个方法(后面需要时讲): componentWillReceiveProps
   */
+  class LifeCycle extends React.Component{
+      constructor(props) {
+          super(props);
+          this.state = {
+              person:{
+                  name:'kobe',
+                  age:39
+              }
+          }
+          console.log('constructor()');
+      }
+
+      // 组件将要被挂载(渲染)
+      componentWillMount() {
+          console.log('componentWillMount() 组件将要被挂载(渲染)');
+          setTimeout(function () {
+              this.setState({
+                  person:{
+                      name:'wade',
+                      age:36
+                  }
+              })
+          }.bind(this), 1000)
+
+          // 箭头函数
+          setTimeout(()=>{
+              this.setState({
+                  person:{
+                      name:'duncan',
+                      age:44
+                  }
+              })
+          }, 2000)
+      }
+
+      // 组件挂载(渲染)完毕
+      componentDidMount() {
+          console.info('componentDidMount() 组件挂载(渲染)完毕');
+          setTimeout(()=>{
+              ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+          }, 3000)
+
+          this.intervalId = setInterval(function () {
+              console.log('setInterval');
+          }, 1000)
+      }
+
+      // 组件将要更新
+      componentWillUpdate() {
+          console.info('componentWillUpdate() 组件将要更新')
+      }
+
+      // 组件更新完毕
+      componentDidUpdate() {
+          console.info('componentDidUpdate() 组件更新完毕')
+      }
+
+      // 组件将要被卸载
+      componentWillUnmount() {
+          console.info('componentWillUnMount() 组件将要被卸载');
+          clearInterval(this.intervalId);
+      }
+      render() {
+          console.log('render()');
+          let {person} = this.state;
+          return(
+              <div>{person.name}---{person.age}</div>
+          )
+      }
+  }
+
+  ReactDOM.render(<LifeCycle/>, document.getElementById('example'))
 </script>
 </body>
 </html>
