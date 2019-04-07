@@ -15,6 +15,37 @@
    自定义组件:
    功能描述: 让指定的文本做显示/隐藏的动画
    */
+
+    class AnimateMsg extends React.Component{
+
+        constructor(props) {
+            super(props);
+            this.state = {
+                opacity:1.0
+            }
+        }
+
+        componentDidMount() {
+            setInterval(function () {
+                var opacity = this.state.opacity;
+                opacity-=0.05;
+                if(opacity<0.05) {
+                    opacity=1.0;
+                }
+                this.setState({
+                    opacity: opacity
+                })
+            }.bind(this), 100)
+        }
+
+        render(){
+            return (
+                <p style={{opacity:this.state.opacity}}>{this.props.msg}</p>
+            )
+        }
+    }
+
+    ReactDOM.render(<AnimateMsg msg="zhuzhuxia"/>, document.getElementById('example'))
 </script>
 </body>
 </html>
