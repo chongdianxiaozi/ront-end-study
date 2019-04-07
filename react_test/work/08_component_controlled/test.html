@@ -28,7 +28,32 @@
     2. 初始数据显示为atguigu
     3. 输入数据时, 下面的数据同步变化
   */
+    class TwoWay extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {
+                msg: 'zhuzhuxia'
+            }
+            this.handleChange = this.handleChange.bind(this)
+        }
 
+        handleChange(event){
+            let msg = event.target.value;
+            // ES6语法
+            this.setState({msg})
+        }
+
+        render() {
+            return(
+                <div>
+                  <input type="text" value={this.state.msg} onChange={this.handleChange}/>
+                  <p>{this.state.msg}</p>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<TwoWay/>, document.getElementById('example'))
 </script>
 </body>
 </html>
